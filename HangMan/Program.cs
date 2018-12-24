@@ -12,8 +12,42 @@ namespace HangMan
         {
             try
             {
-                Game game = new Game();
-                Console.Write("Hello! lets play some hangman.\n");
+                //game start - get word(s), display _'s.
+                Word wordList = new Word();
+                Game game;
+                Console.Write("Hangman! \n\n");
+                while (true)
+                {
+                    Console.Write("Player 1, please enter your word, enter nothing when done.\n");
+                    String wordEntered = Console.ReadLine().Trim().ToLower().Replace(" ", String.Empty);
+                    Console.WriteLine("");
+                    if(wordEntered == "" && wordList.count() > 0)
+                    {
+                        break;
+                    }
+                    wordList.addWord(wordEntered);
+                }
+                game = new Game(wordList);
+                game.pickWord();
+                for(int i = 0; i < game.wordPickedLength(); i++)
+                {
+                    Console.Write("_ ");
+                }
+                Console.WriteLine("\n\n");
+
+                //get guess, display right or wrong, redraw display
+                while (true)
+                {
+                    while (true)
+                    {
+                        Console.WriteLine("Player 2, Enter Guess: ");
+                        if (game.addGuess(Console.ReadKey().KeyChar.ToString().ToLower()))
+                        {
+                            break;
+                        }
+                    }
+                    game.updateDisplay();
+                }
             }
             finally
             {

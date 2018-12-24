@@ -8,36 +8,72 @@ namespace HangMan
 {
     class Game
     {
-        private Boolean lose;
-        Word word;
+        private Word word;
+        private String wordPicked;
+        private LinkedList<String> guesses;
 
 
         public Game()
         {
-            this.lose = false;
-            word = new Word();
+            this.word = new Word();
+            guesses = new LinkedList<string>();
         }
-
-        public static void fillList(String[] words, LinkedList<String> list)
+        public Game(Word word)
         {
-            foreach(String word in words){
-                list.AddLast(word);
+            this.word = word;
+            guesses = new LinkedList<string>();
+        }
+        
+        public void setPickedWord(String word)
+        {
+            this.wordPicked = word;
+        }
+        
+        public void updateDisplay()
+        {
+            for(int i = 0; i < wordPicked.Length; i++)
+            {
+                //if(wordPicked.ElementAt(i))
             }
+
         }
 
-        public void display()
+        public bool addGuess(String guess)
         {
-            
+            guess.Trim().ToLower();
+            if(guess.Equals(null) || guess.Equals(""))
+            {
+                Console.WriteLine("invalid guess");
+                return false;
+            }
+            if (guesses.Contains(guess))
+            {
+                Console.WriteLine("Already guessed that!");
+                return false;
+            }
+            guesses.AddLast(guess);
+            return true;
+        }
+
+        public String pickWord()
+        {
+            this.wordPicked = word.pickWord();
+            return wordPicked;
+        }
+
+        public int wordPickedLength()
+        {
+            return wordPicked.Length;
+        }
+
+        public int numWords()
+        {
+            return word.count();
         }
 
         //this is for testing purposes
         static void main()
         {
-
-
-            String[] words = { "start", "here", "great", "game", "amazing", "insane", "stumped", "zebra", "racoon", "slippery", "zonks", "temporary", "attorny", "confused", "startled", "instatiable" };
-            LinkedList<String> wordList = new LinkedList<string>();
-            fillList(words, wordList);
 
         }
     }

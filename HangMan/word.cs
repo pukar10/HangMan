@@ -15,13 +15,17 @@ namespace HangMan
             wordList = new LinkedList<string>();
         }
 
-        public void addWord()
+        public void addWord(String word)
         {
-            Console.Write("P1 add Word: ");
-            String wordToAdd = Console.ReadLine();
-            wordToAdd.ToLower().Trim().Replace(" ", String.Empty);
-            wordList.AddLast(wordToAdd);
+            if(word == null || word == "")
+            {
+                Console.Write("enter a real word.");
+            }else
+            {
+                wordList.AddLast(word);
+            }
         }
+
 
         public String pickWord()
         {
@@ -35,17 +39,20 @@ namespace HangMan
             return wordPicked;
         }
 
-
-
-
-
+        public int count()
+        {
+            return wordList.Count();
+        }
 
 
         //testing
-        static void TestWord(String[] args)
+        static void Main(String[] args)
         {
             Word word = new Word();
+            word.addWord("complete");
+            word.addWord("start");
             Console.Write(word.pickWord());
+            Console.ReadKey();
             
         }
     }

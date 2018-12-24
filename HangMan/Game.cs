@@ -33,7 +33,10 @@ namespace HangMan
         {
             for(int i = 0; i < wordPicked.Length; i++)
             {
-                //if(wordPicked.ElementAt(i))
+                if (guesses.Contains(wordPicked.ElementAt(i).ToString()))
+                {
+
+                }
             }
 
         }
@@ -43,12 +46,12 @@ namespace HangMan
             guess.Trim().ToLower();
             if(guess.Equals(null) || guess.Equals(""))
             {
-                Console.WriteLine("invalid guess");
+                Console.WriteLine("\ninvalid guess");
                 return false;
             }
             if (guesses.Contains(guess))
             {
-                Console.WriteLine("Already guessed that!");
+                Console.WriteLine("\nAlready guessed that!");
                 return false;
             }
             guesses.AddLast(guess);

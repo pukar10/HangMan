@@ -40,7 +40,7 @@ namespace HangMan
                 {
                     while (true)
                     {
-                        Console.WriteLine("Player 2, Enter Guess: ");
+                        Console.WriteLine("\nPlayer 2, Enter Guess: ");
                         if (game.addGuess(Console.ReadKey().KeyChar.ToString().ToLower()))
                         {
                             break;

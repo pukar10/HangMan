@@ -19,7 +19,7 @@ namespace HangMan
         {
             if(word == null || word == "")
             {
-                Console.Write("enter a real word.");
+                Console.WriteLine("enter a real word.");
             }else
             {
                 wordList.AddLast(word);
@@ -31,7 +31,7 @@ namespace HangMan
         {
             if(wordList.Count <= 0)
             {
-                Console.Write("No more words. Please add more.");
+                Console.WriteLine("No more words. Please add more.");
             }
             Random rand = new Random();
             String wordPicked = wordList.ElementAtOrDefault(rand.Next(0, wordList.Count()));

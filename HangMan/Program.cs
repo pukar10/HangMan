@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace HangMan
 {
@@ -34,19 +35,29 @@ namespace HangMan
                     Console.Write("_ ");
                 }
                 Console.WriteLine("\n\n");
-
+                Console.Clear();
                 //get guess, display right or wrong, redraw display
                 while (true)
                 {
                     while (true)
                     {
-                        Console.WriteLine("\nPlayer 2, Enter Guess: ");
+                        Console.Write("\nPlayer 2, Enter Guess: ");
                         if (game.addGuess(Console.ReadKey().KeyChar.ToString().ToLower()))
                         {
                             break;
                         }
+                        Console.Clear();
+                        Console.WriteLine("Wrong!");
+                        game.updateDisplay();
                     }
                     game.updateDisplay();
+                    if (game.end())
+                    {
+                        Console.WriteLine("Congratulations you won!");
+                        Thread.Sleep(3000);
+                        Environment.Exit(0);
+                        break;
+                    }
                 }
             }
             finally

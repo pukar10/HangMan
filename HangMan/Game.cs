@@ -34,12 +34,14 @@ namespace HangMan
             this.wordPicked = word;
         }
         
+        /**
+         * 1. Display the HangMan!
+         * 2. Display the _ and letters
+         * 3. Display the Used letters (previous guesses).
+         */ 
         public void updateDisplay()
         {
-            Console.WriteLine(man[wrong]);
-
-            //display the _ and letters
-            Console.WriteLine("");
+            Console.WriteLine(man[wrong]+"\n");
             for(int i = 0; i < wordPicked.Length; i++)
             {
                 if (guesses.Contains(wordPicked.ElementAt(i).ToString()))
@@ -50,13 +52,21 @@ namespace HangMan
                     Console.Write("_ ");
                 }
             }
+            //display Used letter(previous guesses).
+            Console.Write("\nGuesses: ");
+            foreach(String guess in guesses)
+            {
+                Console.Write(guess.ToString());
+            }
         }
+
+
 
         /**
          * checks to see if the game has ended. 
          * if chances is 6 or above return true(end).
          * if there is a lettter in wordPicked that is not in guessses return false(dont end).
-         */ 
+         */
         public bool end()
         {
             if(chances >= 6)
@@ -97,6 +107,7 @@ namespace HangMan
             if (!wordPicked.Contains(guess))
             {
                 Console.WriteLine("\nWrong!");
+                guesses.AddLast(guess);
                 wrongPlus();
                 return false;
             }

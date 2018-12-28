@@ -44,6 +44,7 @@ namespace HangMan
                         Console.Write("\nPlayer 2, Enter Guess: ");
                         if (game.addGuess(Console.ReadKey().KeyChar.ToString().ToLower()))
                         {
+                            Console.Clear();
                             break;
                         }
                         Console.Clear();
@@ -53,6 +54,7 @@ namespace HangMan
                     game.updateDisplay();
                     if (game.end())
                     {
+                        Console.Clear();
                         Console.WriteLine("Congratulations you won!");
                         Thread.Sleep(3000);
                         Environment.Exit(0);

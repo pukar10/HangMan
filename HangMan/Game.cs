@@ -69,7 +69,7 @@ namespace HangMan
          */
         public bool end()
         {
-            if(chances >= 6)
+            if(chances > 6)
             {
                 return true;
             }
@@ -122,6 +122,7 @@ namespace HangMan
         {
             if (wrong == 6)
             {
+                Console.Clear();
                 Console.WriteLine("You have Lost!");
                 Thread.Sleep(3000);
                 Environment.Exit(0);
